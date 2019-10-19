@@ -1,6 +1,24 @@
-.rick{
-    width:100%; 
-    position: absolute; 
+html,
+body {
+    background-color: black;
+    height: 100%;
+    color: white;
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    overflow: hidden;
+}
+
+.rick {
+    width: 300px;
+    background-color: #fff;
+    position: relative;
+}
+
+.rickContainer {
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* background-color: yellow; */
+    overflow: hidden;
     transition: bottom 1s;
-    bottom: -500px;
 }

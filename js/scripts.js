@@ -23,32 +23,37 @@ function fillUpInputs(){
         select.appendChild(opt);
     }
 }
+
 function timerDone(){
 
 }
 
+// shows time
 function updateTimer(h, m, s){
     document.getElementById("demo").innerHTML =  h + "h "
     + m + "m " + s + "s ";
 }
 
+function updateSharableLink(l){
+    document.getElementById("sharable").value =  l;
+}
+
 function startTimer(){
-    // window.history.pushState("string", "Title", "/new-url");
     document.getElementById("timer").style.visibility="hidden";
     document.getElementById("sharableLink").style.visibility = "visible";
     document.getElementById("timer").style.width="0";
     document.getElementById("timer").style.height="0";
 
+    // Form elements
+    var hours = document.getElementById("hours").value;
+    var minutes = document.getElementById("mins").value;
+    var seconds = document.getElementById("secs").value;
 
-
-    var hours = 0;
-    var minutes = 0;
-    var seconds = 0;
-
-    hours = document.getElementById("hours").value;
-    minutes = document.getElementById("mins").value;
-    seconds = document.getElementById("secs").value;
-
+    // Finding the time in future
+    var currentTime = new Date();
+    currentTime.setSeconds(currentTime.getSeconds() + seconds + minutes*60 + hours *60*60); 
+    window.history.pushState("string", "RickAstyley", "/index.html?" + currentTime.getTime());
+    updateSharableLink(window.location.href.toString());
     updateTimer(hours, minutes, seconds);
 
     var x = setInterval(function() {
@@ -67,26 +72,15 @@ function startTimer(){
                 hours -= 1; 
             }
        }
-
-        // Output the result in an element with id="demo"
-        document.getElementById("demo").innerHTML =  hours + "h "
-        + minutes + "m " + seconds + "s ";
-          
-        // If the count down is over, write some text 
-        if (distance < 0) {
-        //   clearInterval(x);
-        //   document.getElementById("demo").innerHTML = "EXPIRED";
-        }
+       updateTimer(hours, minutes, seconds);
     }, 1000);
-
-    
 }
 
 function main(){
     fillUpInputs();
     setTimeout(() => {
         var Rick = document.getElementById("rick").style;
-        Rick.bottom = "0px";
+        // Rick.bottom = "0px";
     }, 2000);
 }
 main();
