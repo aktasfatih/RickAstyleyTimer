@@ -90,11 +90,10 @@ function main(){
     date.setTime(window.location.search.substr(1));
     console.log(date.toLocaleString());
 
-    
+
     fillUpInputs();
     setTimeout(() => {
         var Rick = document.getElementById("rick").style;
-        // Rick.bottom = "0px";
     }, 2000);
 }
 main();
