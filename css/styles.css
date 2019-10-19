@@ -1,0 +1,6 @@
+.rick{
+    width:100%; 
+    position: absolute; 
+    transition: bottom 1s;
+    bottom: -500px;
+}

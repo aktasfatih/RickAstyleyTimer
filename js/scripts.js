@@ -33,14 +33,22 @@ function updateTimer(h, m, s){
 }
 
 function startTimer(){
+    // window.history.pushState("string", "Title", "/new-url");
     document.getElementById("timer").style.visibility="hidden";
     document.getElementById("sharableLink").style.visibility = "visible";
     document.getElementById("timer").style.width="0";
     document.getElementById("timer").style.height="0";
 
+
+
     var hours = 0;
     var minutes = 0;
     var seconds = 0;
+
+    hours = document.getElementById("hours").value;
+    minutes = document.getElementById("mins").value;
+    seconds = document.getElementById("secs").value;
+
     updateTimer(hours, minutes, seconds);
 
     var x = setInterval(function() {
@@ -56,7 +64,7 @@ function startTimer(){
            minutes -=1;
             if(minutes < 0){
                 minutes = 59;
-                hours -= 1;
+                hours -= 1; 
             }
        }
 
@@ -70,10 +78,15 @@ function startTimer(){
         //   document.getElementById("demo").innerHTML = "EXPIRED";
         }
     }, 1000);
+
+    
 }
 
 function main(){
     fillUpInputs();
-
+    setTimeout(() => {
+        var Rick = document.getElementById("rick").style;
+        Rick.bottom = "0px";
+    }, 2000);
 }
 main();
