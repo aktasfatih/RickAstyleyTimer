@@ -1,0 +1,42 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RickAstyley Timer</title>
+  <meta name="description" content="This is an timer">
+  <meta name="author" content="Fatih Aktas">
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+</head>
+
+<body style="background-color: black;color:white; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+  <div style="background-color: none;text-align: center;">
+    
+        <span style="color: white;font-size: 70px;background-color:none;">
+            Rick Astyley Timer
+        </span>
+    <div id="timer">
+        <div style="font-size: 50px;margin-top:30px">
+            <select id="hours" style="font-size: 40px;"></select>:
+            <select id="mins" style="font-size: 40px;"></select>:
+            <select id="secs" style="font-size: 40px;"></select>
+        </div>
+        <input type="submit" value="start" onclick="startTimer()" style="margin-top:30px;font-size: 30px;">
+    </div>
+
+    <p id="demo" style="font-size: 90px;"></p>
+
+    <div id="sharableLink" style="color:white; font-size: 20px; visibility:hidden">
+        Sharable link:
+        <input style="font-size: 20px;" value="https:////...."/>
+    </div>
+  </div>
+
+  <div>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <!-- <img src="RickAstley.png" style="position:absolute;left:0px; bottom:0"/> -->
+  
+  <script src="js/scripts.js"></script>
+</body>
+</html>
