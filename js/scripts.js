@@ -52,6 +52,7 @@ function startTimer(){
     // Finding the time in future
     var currentTime = new Date();
     currentTime.setSeconds(currentTime.getSeconds() + seconds + minutes*60 + hours *60*60); 
+    console.log("Until: " + currentTime.toLocaleString());
     window.history.pushState("string", "RickAstyley", "/index.html?" + currentTime.getTime());
     updateSharableLink(window.location.href.toString());
     updateTimer(hours, minutes, seconds);
@@ -76,7 +77,20 @@ function startTimer(){
     }, 1000);
 }
 
+function copyLink() {
+    var copyText = document.getElementById("sharable");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999)
+    document.execCommand("copy");
+    alert("Copied the url");
+  }
+
 function main(){
+    var date = new Date();
+    date.setTime(window.location.search.substr(1));
+    console.log(date.toLocaleString());
+
+    
     fillUpInputs();
     setTimeout(() => {
         var Rick = document.getElementById("rick").style;
