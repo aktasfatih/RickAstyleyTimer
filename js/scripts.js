@@ -38,25 +38,25 @@ function updateSharableLink(l){
     document.getElementById("sharable").value =  l;
 }
 
-function startTimer(){
-    document.getElementById("timer").style.visibility="hidden";
+function setTimer(){
     document.getElementById("sharableLink").style.visibility = "visible";
-    document.getElementById("timer").style.width="0";
-    document.getElementById("timer").style.height="0";
 
-    // Form elements
     var hours = document.getElementById("hours").value;
     var minutes = document.getElementById("mins").value;
     var seconds = document.getElementById("secs").value;
 
-    // Finding the time in future
     var currentTime = new Date();
-    currentTime.setSeconds(currentTime.getSeconds() + seconds + minutes*60 + hours *60*60); 
-    console.log("Until: " + currentTime.toLocaleString());
+    // console.log({today: currentTime.toString()});
+    currentTime.setTime(currentTime.getTime() + seconds*1000 + minutes*60*1000 + hours *60*60*1000); 
+    // console.log("Until: " + currentTime.toTimeString());
     window.history.pushState("string", "RickAstyley", "/index.html?" + currentTime.getTime());
     updateSharableLink(window.location.href.toString());
-    updateTimer(hours, minutes, seconds);
+    hideInputs();
+    startTimer(hours, minutes, seconds);    
+}
 
+function startTimer(hours, minutes, seconds){
+    updateTimer(hours, minutes, seconds);
     var x = setInterval(function() {
         if(hours <= 0 && minutes <= 0 && seconds <= 0){
             timerDone();
@@ -83,17 +83,38 @@ function copyLink() {
     copyText.setSelectionRange(0, 99999)
     document.execCommand("copy");
     alert("Copied the url");
-  }
+}
+
+function hideInputs(){
+    document.getElementById("timer").style.visibility="hidden";
+    document.getElementById("sharableLink").style.visibility = "visible";
+    document.getElementById("timer").style.width="0";
+    document.getElementById("timer").style.height="0";
+}
 
 function main(){
-    var date = new Date();
-    date.setTime(window.location.search.substr(1));
-    console.log(date.toLocaleString());
+    console.log({currentDate: (new Date()).toLocaleString()});
+    var arg = window.location.search.substr(1);
+    if(arg.length > 0){
+        hideInputs();
+        document.getElementById("sharableLink").style.visibility = "hidden";
+        var countDownDate  = new Date();
+        countDownDate.setTime(arg);
+        console.log(countDownDate.toLocaleString());
 
+        var now = new Date().getTime();
 
-    fillUpInputs();
-    setTimeout(() => {
-        var Rick = document.getElementById("rick").style;
-    }, 2000);
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        startTimer(hours, minutes, seconds);
+    }else{
+        fillUpInputs();
+    }
 }
 main();
